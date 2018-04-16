@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.BiztalkTranslator", "src\MessageBroker.POC.BiztalkTranslator\MessageBroker.POC.BiztalkTranslator.csproj", "{1AF83DD1-8064-44A2-8CD0-077E90C5183C}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{370E9951-B7CF-415D-8D47-287C90047282}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Biztalk.Sandbox", "MessageBroker.POC.Biztalk.Sandbox\MessageBroker.POC.Biztalk.Sandbox.csproj", "{71ABDEB7-D9EC-4760-A846-2716599A3CDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Biztalk.Sandbox.Reciver1", "samples\MessageBroker.POC.Biztalk.Sandbox.Reciver1\MessageBroker.POC.Biztalk.Sandbox.Reciver1.csproj", "{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{71ABDEB7-D9EC-4760-A846-2716599A3CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71ABDEB7-D9EC-4760-A846-2716599A3CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71ABDEB7-D9EC-4760-A846-2716599A3CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{97A57AD1-8378-4AA3-BDD4-DCD16D3669A3} = {4E338E36-2B0C-471C-B4E1-0BFA9A651D2E}
 		{5FFFE4BC-8EC8-4DBD-9338-2FB0DAB19CEE} = {12E05430-ABA7-4FFB-82C3-CD8809864F86}
 		{71ABDEB7-D9EC-4760-A846-2716599A3CDE} = {370E9951-B7CF-415D-8D47-287C90047282}
+		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853} = {370E9951-B7CF-415D-8D47-287C90047282}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {585D241E-38A6-4E9E-864C-FA4E7E26F912}
