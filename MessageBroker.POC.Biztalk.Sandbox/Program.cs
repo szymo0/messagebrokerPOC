@@ -14,7 +14,7 @@ namespace MessageBroker.POC.Biztalk.Sandbox
         static void Main(string[] args)
         {
 
-            MessageQueue.Exists(@"FormatName:DIRECT=OS:RUBGHYNXYY\DEADLETTER$");
+            MessageQueue.Exists(@"FormatName:DIRECT=tcp:127.0.0.1\DEADLETTER$");
             foreach(var que in MessageQueue.GetPrivateQueuesByMachine("RUBGHYNXYY"))
             {
                 Console.WriteLine(que.FormatName);
