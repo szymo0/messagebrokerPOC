@@ -45,8 +45,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
         {
             metadata.Destinations.ShouldNotBeNull();
             metadata.Destinations.Count().ShouldBe(_destination.Split(new []{';'},StringSplitOptions.RemoveEmptyEntries).Length);
-            metadata.DateFrom.ShouldBe(_dateFrom);
-            metadata.DateTo.ShouldBe(_dateTo);
             metadata.GenerateDate.ShouldBe(_generateDateTime);
             metadata.RowsCount.ShouldBe(_rowCounts);
             metadata.Source.ShouldBe(_source);
@@ -88,8 +86,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
         {
             metadata.Destinations.ShouldNotBeNull();
             metadata.Destinations.Count().ShouldBe(_destination.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Length);
-            metadata.DateFrom.ShouldBe(_dateFrom);
-            metadata.DateTo.ShouldBe(_dateTo);
             metadata.GenerateDate.ShouldBe(_generateDateTime);
             metadata.RowsCount.ShouldBe(0);
             metadata.Source.ShouldBe(_source);
@@ -110,8 +106,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
         {
             metadata.Destinations.ShouldNotBeNull();
             metadata.Destinations.Count().ShouldBe(_destination.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Length);
-            metadata.DateFrom.ShouldBe(_dateFrom);
-            metadata.DateTo.ShouldBe(_dateTo);
             metadata.GenerateDate.ShouldBe(_generateDateTime);
             metadata.RowsCount.ShouldBe(_rowCounts);
             metadata.Source.ShouldBe(_source);

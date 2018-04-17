@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using MessageBroker.POC.Messages.Messages;
 
 namespace MessageBroker.POC.BiztalkTranslator
 {
@@ -28,8 +29,11 @@ namespace MessageBroker.POC.BiztalkTranslator
             var metaDataXmlElement = message.Element("MetaData");
             var metaData = _metadataPareser.ParseFromXElementToMetadata(metaDataXmlElement);
 
-            foreach (var row in message.Elements("Row"))
+            foreach (var row in (metaDataXmlElement.NextNode as XElement).Elements("row"))
             {
+                decimal? rowId = row.Attribute("id") != null 
+                              && !string.IsNullOrEmpty(row.Attribute("id").Value)?
+                    decimal.Parse(row.Attribute("id").Value) :new decimal?();
                 foreach (var destMetadata in metaData.GenerateForDestinations())
                 {
                     XElement messageData = new XElement(message.Name.LocalName);
@@ -40,6 +44,7 @@ namespace MessageBroker.POC.BiztalkTranslator
                     BiztalkMessage biztalkMessage = new BiztalkMessage();
                     biztalkMessage.Data = messageData.ToString(SaveOptions.None);
                     biztalkMessage.CorrelationId = metaData.CorrelationId;
+                    biztalkMessage.RowId = rowId;
                     biztalkMessage.GenerateTime=DateTime.Now;
                     biztalkMessage.Destination = destMetadata.Destination;
                     biztalkMessage.TranposrtName = message.Name.LocalName;

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using NServiceBus;
 
 namespace MessageBroker.POC.BiztalkTranslator
 {
@@ -10,7 +8,17 @@ namespace MessageBroker.POC.BiztalkTranslator
     {
         static void Main(string[] args)
         {
-           
+
+            Task.Run(() =>
+            {
+                Processor processor = new Processor();
+                processor.StartProcess();
+            });
+
+            Console.WriteLine("Started");
+            Console.ReadLine();
+
+
         }
     }
 }

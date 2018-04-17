@@ -9,8 +9,6 @@ namespace MessageBroker.POC.BiztalkTranslator
         public IEnumerable<string> Destinations { get; internal set; }
         public int RowsCount { get; internal set; }
         public DateTime? GenerateDate { get; internal set; }
-        public DateTime? DateFrom { get; internal set; }
-        public DateTime? DateTo { get; internal set; }
         public string Source { get; internal set; }
         public Guid CorrelationId { get; set; }
         public IList<DestinationMetadata> GenerateForDestinations()

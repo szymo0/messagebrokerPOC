@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props" Condition="Exists('..\..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props')" />
   <Import Project="..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props" Condition="Exists('..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1AF83DD1-8064-44A2-8CD0-077E90C5183C}</ProjectGuid>
+    <ProjectGuid>{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MessageBroker.POC.BiztalkTranslator</RootNamespace>
-    <AssemblyName>MessageBroker.POC.BiztalkTranslator</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>MessageBroker.POC.Reciver</RootNamespace>
+    <AssemblyName>MessageBroker.POC.Reciver</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
@@ -37,33 +36,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.5.2\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.7.0.0-rc0002\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.7.0.0-rc0002\lib\net452\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.Transport.Msmq">
-      <HintPath>..\..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\lib\net452\NServiceBus.Transport.Msmq.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Transport.Msmq, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\lib\net452\NServiceBus.Transport.Msmq.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transport.RabbitMQ, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.RabbitMQ.5.0.0-rc0001\lib\net452\NServiceBus.Transport.RabbitMQ.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.RabbitMQ.5.0.0-rc0001\lib\net452\NServiceBus.Transport.RabbitMQ.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RabbitMQ.Client.5.0.1\lib\net451\RabbitMQ.Client.dll</HintPath>
+      <HintPath>..\packages\RabbitMQ.Client.5.0.1\lib\net451\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Messaging" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -73,25 +64,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BiztalkParser.cs" />
-    <Compile Include="BiztalkRowParser.cs" />
-    <Compile Include="ErrorOccuredWhenProccessTranposrtXml.cs" />
-    <Compile Include="InvalidBiztalkMessageXml.cs" />
-    <Compile Include="Metadata.cs" />
-    <Compile Include="MetadataParser.cs" />
-    <Compile Include="Processor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TransportMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\MessageBroker.POC.Messages\MessageBroker.POC.Messages.csproj">
+    <ProjectReference Include="..\MessageBroker.POC.Messages\MessageBroker.POC.Messages.csproj">
       <Project>{3DEF426E-287B-4E1E-B206-9D3E62B949FB}</Project>
       <Name>MessageBroker.POC.Messages</Name>
     </ProjectReference>
@@ -101,6 +83,6 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props'))" />
+    <Error Condition="!Exists('..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props'))" />
   </Target>
 </Project>

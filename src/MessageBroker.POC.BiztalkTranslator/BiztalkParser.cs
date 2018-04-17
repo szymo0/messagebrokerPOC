@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
+using MessageBroker.POC.Messages.Messages;
 
 namespace MessageBroker.POC.BiztalkTranslator
 {
@@ -23,7 +24,7 @@ namespace MessageBroker.POC.BiztalkTranslator
 
             var message = XDocument.Parse(biztalkMessage);
 
-            if (message?.Root == null || message.Root.IsEmpty || string.IsNullOrEmpty(message.Root.Value))
+            if (message?.Root == null || message.Root.IsEmpty || (string.IsNullOrEmpty(message.Root.Value) && !message.Root.HasElements))
                 throw new InvalidBiztalkMessageXml(biztalkMessage);
             try
             {

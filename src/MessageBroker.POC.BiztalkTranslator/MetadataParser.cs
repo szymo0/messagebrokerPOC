@@ -16,8 +16,6 @@ namespace MessageBroker.POC.BiztalkTranslator
 
             Metadata metaData = new Metadata();
             metaData.Destinations = GetDestionations(message.Element("Dest"));
-            metaData.DateFrom = ParseDate(message.Element("DateFrom"));
-            metaData.DateTo = ParseDate(message.Element("DateTo"));
             metaData.GenerateDate = ParseDate(message.Element("GenerateDate"));
             metaData.RowsCount = ParseInt(message.Element("RowCount"));
             metaData.Source = message.Element("Source")?.Value ?? "0666NPIK";
@@ -31,10 +29,6 @@ namespace MessageBroker.POC.BiztalkTranslator
         {
             XElement element = new XElement("MetaData");
             element.Add(new XElement("Dest", string.Join(";", metadata.Destinations)));
-            if(metadata.DateFrom.HasValue)
-                element.Add(new XElement("DateFrom", metadata.DateFrom));
-            if(metadata.DateTo.HasValue)
-                element.Add(new XElement("DateTo", metadata.DateTo));
             if(metadata.GenerateDate.HasValue)
                 element.Add(new XElement("GenerateDate", metadata.GenerateDate));
             element.Add(new XElement("RowCount", metadata.RowsCount));
@@ -127,10 +121,11 @@ namespace MessageBroker.POC.BiztalkTranslator
             if (_allNpikDest == null)
             {
                 _allNpikDest = new List<string>();
-                for (int i = 0; i < 400; i++)
-                {
-                    _allNpikDest.Add($"{i:0000}NPIK");
-                }
+                _allNpikDest.AddRange(new []{"0002NPIK", "0004NPIK" , "0005NPIK"});
+                //for (int i = 0; i < 400; i++)
+                //{
+                //    _allNpikDest.Add($"{i:0000}NPIK");
+                //}
             }
 
             return _allNpikDest;

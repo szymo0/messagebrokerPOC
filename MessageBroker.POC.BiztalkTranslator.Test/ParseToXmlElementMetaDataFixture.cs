@@ -10,8 +10,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
     {
         MetadataParser _metadataParser = new MetadataParser();
         private Metadata _metadata = new Metadata();
-        private DateTime _dateFrom = new DateTime(2017, 1, 1, 1, 1, 1);
-        private DateTime _dateTo = new DateTime(2017, 2, 1, 1, 1, 1);
         private DateTime _generateDateTime = new DateTime(2018, 1, 1, 1, 1, 1);
         private IEnumerable<string> _defaultDestinations;
         private int _rowCounts = 2;
@@ -43,16 +41,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
             _metadata.CorrelationId = id;
             return this;
         }
-        public ParseToXmlElementMetaDataFixture SetDateFrom(DateTime? date)
-        {
-            _metadata.DateFrom = date;
-            return this;
-        }
-        public ParseToXmlElementMetaDataFixture SetDateTo(DateTime? date)
-        {
-            _metadata.DateTo = date;
-            return this;
-        }
         public ParseToXmlElementMetaDataFixture SetDestinations(IEnumerable<string> destinations)
         {
             _metadata.Destinations = destinations;
@@ -82,8 +70,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
         {
             Clear()
                 .SetCorrelationId(_id)
-                .SetDateFrom(_dateFrom)
-                .SetDateTo(_dateTo)
                 .SetDestinations(_defaultDestinations)
                 .SetRowsCount(_rowCounts)
                 .SetGenerateDate(_generateDateTime)
@@ -95,10 +81,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
             element.Name.LocalName.ShouldBe("MetaData");
             element.Element("Dest").ShouldNotBeNull();
             element.Element("Dest").Value.ShouldBe(string.Join(";", _defaultDestinations));
-            element.Element("DateFrom").ShouldNotBeNull();
-            element.Element("DateFrom").Value.ShouldBe(_dateFrom.ToString("s"));
-            element.Element("DateTo").ShouldNotBeNull();
-            element.Element("DateTo").Value.ShouldBe(_dateTo.ToString("s"));
             element.Element("GenerateDate").ShouldNotBeNull();
             element.Element("GenerateDate").Value.ShouldBe(_generateDateTime.ToString("s"));
             element.Element("RowCount").ShouldNotBeNull();
@@ -124,8 +106,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
             element.Name.LocalName.ShouldBe("MetaData");
             element.Element("Dest").ShouldNotBeNull();
             element.Element("Dest").Value.ShouldBe(string.Join(";", _defaultDestinations));
-            element.Element("DateFrom").ShouldBeNull();
-            element.Element("DataTo").ShouldBeNull();
             element.Element("GenerateDate").ShouldNotBeNull();
             element.Element("GenerateDate").Value.ShouldBe(_generateDateTime.ToString("s"));
             element.Element("RowCount").ShouldNotBeNull();
@@ -139,8 +119,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
         public void Arange_metadata_has_not_id_every_property_will_be_in_xelement()
         {
             Clear()
-                .SetDateFrom(_dateFrom)
-                .SetDateTo(_dateTo)
                 .SetDestinations(_defaultDestinations)
                 .SetRowsCount(_rowCounts)
                 .SetGenerateDate(_generateDateTime)
@@ -152,10 +130,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
             element.Name.LocalName.ShouldBe("MetaData");
             element.Element("Dest").ShouldNotBeNull();
             element.Element("Dest").Value.ShouldBe(string.Join(";", _defaultDestinations));
-            element.Element("DateFrom").ShouldNotBeNull();
-            element.Element("DateFrom").Value.ShouldBe(_dateFrom.ToString("s"));
-            element.Element("DateTo").ShouldNotBeNull();
-            element.Element("DateTo").Value.ShouldBe(_dateTo.ToString("s"));
             element.Element("GenerateDate").ShouldNotBeNull();
             element.Element("GenerateDate").Value.ShouldBe(_generateDateTime.ToString("s"));
             element.Element("RowCount").ShouldNotBeNull();

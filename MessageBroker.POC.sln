@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Biztalk.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Biztalk.Sandbox.Reciver1", "samples\MessageBroker.POC.Biztalk.Sandbox.Reciver1\MessageBroker.POC.Biztalk.Sandbox.Reciver1.csproj", "{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Sender", "MessageBroker.POC.Sender\MessageBroker.POC.Sender.csproj", "{BE24DA73-67E9-4073-AB2B-139A1884470A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Reciver", "MessageBroker.POC.Reciver\MessageBroker.POC.Reciver.csproj", "{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Messages", "MessageBroker.POC.Messages\MessageBroker.POC.Messages.csproj", "{3DEF426E-287B-4E1E-B206-9D3E62B949FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +51,18 @@ Global
 		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE24DA73-67E9-4073-AB2B-139A1884470A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE24DA73-67E9-4073-AB2B-139A1884470A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE24DA73-67E9-4073-AB2B-139A1884470A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE24DA73-67E9-4073-AB2B-139A1884470A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DEF426E-287B-4E1E-B206-9D3E62B949FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DEF426E-287B-4E1E-B206-9D3E62B949FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DEF426E-287B-4E1E-B206-9D3E62B949FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DEF426E-287B-4E1E-B206-9D3E62B949FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +73,9 @@ Global
 		{5FFFE4BC-8EC8-4DBD-9338-2FB0DAB19CEE} = {12E05430-ABA7-4FFB-82C3-CD8809864F86}
 		{71ABDEB7-D9EC-4760-A846-2716599A3CDE} = {370E9951-B7CF-415D-8D47-287C90047282}
 		{4735643C-5E5E-455F-B7FA-D1C2C6C9F853} = {370E9951-B7CF-415D-8D47-287C90047282}
+		{BE24DA73-67E9-4073-AB2B-139A1884470A} = {4E338E36-2B0C-471C-B4E1-0BFA9A651D2E}
+		{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA} = {4E338E36-2B0C-471C-B4E1-0BFA9A651D2E}
+		{3DEF426E-287B-4E1E-B206-9D3E62B949FB} = {4E338E36-2B0C-471C-B4E1-0BFA9A651D2E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {585D241E-38A6-4E9E-864C-FA4E7E26F912}
