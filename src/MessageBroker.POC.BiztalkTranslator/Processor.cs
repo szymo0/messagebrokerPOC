@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Messaging;
-using System.ServiceModel.Dispatcher;
-using System.Text;
-using System.Threading.Tasks;
 using MessageBroker.POC.Messages.Messages;
 using NServiceBus;
 using NServiceBus.Features;
+using NServiceBus.InMemory.Outbox;
+using NServiceBus.Persistence.Sql;
 
 namespace MessageBroker.POC.BiztalkTranslator
 {
+
     public class Processor
     {
         private IEndpointInstance GetSendEndpoint()
@@ -21,15 +21,24 @@ namespace MessageBroker.POC.BiztalkTranslator
             endpointConfiguration.Recoverability()
                 .Immediate(c=>c.NumberOfRetries(5))
                 .Delayed(c => c.NumberOfRetries(3).TimeIncrease(new TimeSpan(0,0,2,0)));
-            endpointConfiguration.UsePersistence<MsmqPersistence>();
-            endpointConfiguration.DisableFeature<TimeoutManager>();
+            endpointConfiguration.EnableOutbox().TimeToKeepDeduplicationData(TimeSpan.FromDays(1));
+
+            var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+            persistence.SqlDialect<SqlDialect.MsSqlServer>();
+            persistence.ConnectionBuilder(()=>new SqlConnection(ConfigurationManager.ConnectionStrings["SqlPersistence"].ConnectionString));
+            persistence.TablePrefix("biztalk");
+            persistence.SubscriptionSettings().CacheFor(TimeSpan.FromMinutes(1));
+
             var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-            //transport.UseDeadLetterQueueForMessagesWithTimeToBeReceived();
             transport.DisableDeadLetterQueueing();
             transport.Transactions(TransportTransactionMode.TransactionScope);
             transport.EnableJournaling();
+
             var route = transport.Routing();
             route.RouteToEndpoint(typeof(BiztalkMessage), "MessageBroker.Msmq.MessageToTransport.Published");
+
+            endpointConfiguration.SendOnly();
+
             endpointConfiguration.EnableInstallers();
 
             var endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();

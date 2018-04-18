@@ -38,8 +38,16 @@
     <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net46\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\packages\NServiceBus.7.0.0-rc0002\lib\net452\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Persistence.Sql">
+      <HintPath>..\..\packages\NServiceBus.Persistence.Sql.4.1.0-beta0001\lib\net452\NServiceBus.Persistence.Sql.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Transport.Msmq, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\lib\net452\NServiceBus.Transport.Msmq.dll</HintPath>
@@ -53,6 +61,14 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Common">
+      <HintPath>..\..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SqlClient">
+      <HintPath>..\..\packages\System.Data.SqlClient.4.4.2\lib\net46\System.Data.SqlClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Messaging" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -69,12 +85,14 @@
     <Compile Include="TransportMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MessageBroker.POC.Messages\MessageBroker.POC.Messages.csproj">
-      <Project>{3DEF426E-287B-4E1E-B206-9D3E62B949FB}</Project>
+      <Project>{3def426e-287b-4e1e-b206-9d3e62b949fb}</Project>
       <Name>MessageBroker.POC.Messages</Name>
     </ProjectReference>
   </ItemGroup>
@@ -83,6 +101,8 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props'))" />
+    <Error Condition="!Exists('..\..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NServiceBus.Transport.Msmq.1.0.0-rc0001\build\NServiceBus.Transport.Msmq.props'))" />
+    <Error Condition="!Exists('..\..\packages\NServiceBus.Persistence.Sql.MsBuild.4.1.0-beta0001\build\NServiceBus.Persistence.Sql.MsBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NServiceBus.Persistence.Sql.MsBuild.4.1.0-beta0001\build\NServiceBus.Persistence.Sql.MsBuild.targets'))" />
   </Target>
+  <Import Project="..\..\packages\NServiceBus.Persistence.Sql.MsBuild.4.1.0-beta0001\build\NServiceBus.Persistence.Sql.MsBuild.targets" Condition="Exists('..\..\packages\NServiceBus.Persistence.Sql.MsBuild.4.1.0-beta0001\build\NServiceBus.Persistence.Sql.MsBuild.targets')" />
 </Project>

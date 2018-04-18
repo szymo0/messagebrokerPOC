@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
+using NServiceBus.Persistence.Sql;
 
 namespace MessageBroker.POC.Reciver
 {
@@ -20,11 +24,15 @@ namespace MessageBroker.POC.Reciver
                 transportRabbitMq.ConnectionString(
                     "host=hornet.rmq.cloudamqp.com;username=sojcrrfr;password=y_y7PKA38r3U3R9ZWyv90O4YziHgztCA;UseTLS=true;virtualHost=sojcrrfr");
                 transportRabbitMq.UseDirectRoutingTopology();
-                configRabbitMq.UsePersistence<InMemoryPersistence>();
+                var sqlPersistance = configRabbitMq.UsePersistence<SqlPersistence>();
+                sqlPersistance.SqlDialect<SqlDialect.MsSqlServer>();
+                sqlPersistance.SubscriptionSettings().CacheFor(TimeSpan.FromDays(1));
+                sqlPersistance.ConnectionBuilder(()=> new SqlConnection(ConfigurationManager.ConnectionStrings["SqlPersistence"].ConnectionString));
+                sqlPersistance.TablePrefix("0005NPIK");
+
                 configRabbitMq.AuditProcessedMessagesTo("audit");
                 configRabbitMq.SendFailedMessagesTo("erorrs");
                 configRabbitMq.EnableDurableMessages();
-                //configRabbitMq.DisableFeature<TimeoutManager>();
                 configRabbitMq.EnableInstallers();
 
                 var result = Endpoint.Start(configRabbitMq).GetAwaiter().GetResult();
@@ -36,11 +44,16 @@ namespace MessageBroker.POC.Reciver
                 transportRabbitMq.ConnectionString(
                     "host=hornet.rmq.cloudamqp.com;username=sojcrrfr;password=y_y7PKA38r3U3R9ZWyv90O4YziHgztCA;UseTLS=true;virtualHost=sojcrrfr");
                 transportRabbitMq.UseDirectRoutingTopology();
-                configRabbitMq.UsePersistence<InMemoryPersistence>();
+
+                var sqlPersistance = configRabbitMq.UsePersistence<SqlPersistence>();
+                sqlPersistance.SqlDialect<SqlDialect.MsSqlServer>();
+                sqlPersistance.SubscriptionSettings().CacheFor(TimeSpan.FromDays(1));
+                sqlPersistance.ConnectionBuilder(() => new SqlConnection(ConfigurationManager.ConnectionStrings["SqlPersistence"].ConnectionString));
+                sqlPersistance.TablePrefix("0002NPIK");
+
                 configRabbitMq.AuditProcessedMessagesTo("audit");
                 configRabbitMq.SendFailedMessagesTo("erorrs");
                 configRabbitMq.EnableDurableMessages();
-                //configRabbitMq.DisableFeature<TimeoutManager>();
                 configRabbitMq.EnableInstallers();
 
                 var result = Endpoint.Start(configRabbitMq).GetAwaiter().GetResult();
@@ -53,11 +66,16 @@ namespace MessageBroker.POC.Reciver
                 transportRabbitMq.ConnectionString(
                     "host=hornet.rmq.cloudamqp.com;username=sojcrrfr;password=y_y7PKA38r3U3R9ZWyv90O4YziHgztCA;UseTLS=true;virtualHost=sojcrrfr");
                 transportRabbitMq.UseDirectRoutingTopology();
-                configRabbitMq.UsePersistence<InMemoryPersistence>();
+
+                var sqlPersistance = configRabbitMq.UsePersistence<SqlPersistence>();
+                sqlPersistance.SqlDialect<SqlDialect.MsSqlServer>();
+                sqlPersistance.SubscriptionSettings().CacheFor(TimeSpan.FromDays(1));
+                sqlPersistance.ConnectionBuilder(() => new SqlConnection(ConfigurationManager.ConnectionStrings["SqlPersistence"].ConnectionString));
+                sqlPersistance.TablePrefix("0004NPIK");
+
                 configRabbitMq.AuditProcessedMessagesTo("audit");
                 configRabbitMq.SendFailedMessagesTo("erorrs");
                 configRabbitMq.EnableDurableMessages();
-                //configRabbitMq.DisableFeature<TimeoutManager>();
                 configRabbitMq.EnableInstallers();
 
                 var result = Endpoint.Start(configRabbitMq).GetAwaiter().GetResult();
