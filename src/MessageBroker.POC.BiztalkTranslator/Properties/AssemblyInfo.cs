@@ -17,10 +17,7 @@ using NServiceBus.Persistence.Sql;
 [assembly: InternalsVisibleTo("MessageBroker.POC.BiztalkTranslator.Test")]
 [assembly: SqlPersistenceSettings(
     MsSqlServerScripts = true,
-    MySqlScripts = true,
-    OracleScripts = true,
-    PostgreSqlScripts = true,
-    ScriptPromotionPath = "$(SolutionDir)PromotedSqlScripts")]
+    ScriptPromotionPath = "$(SolutionDir)PromotedSqlScripts\\BiztalkTranslator")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
