@@ -11,19 +11,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Sql.Que",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{12E05430-ABA7-4FFB-82C3-CD8809864F86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.BiztalkTranslator.Test", "MessageBroker.POC.BiztalkTranslator.Test\MessageBroker.POC.BiztalkTranslator.Test.csproj", "{5FFFE4BC-8EC8-4DBD-9338-2FB0DAB19CEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.BiztalkTranslator.Test", "tests\MessageBroker.POC.BiztalkTranslator.Test\MessageBroker.POC.BiztalkTranslator.Test.csproj", "{5FFFE4BC-8EC8-4DBD-9338-2FB0DAB19CEE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{370E9951-B7CF-415D-8D47-287C90047282}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Biztalk.Sandbox", "MessageBroker.POC.Biztalk.Sandbox\MessageBroker.POC.Biztalk.Sandbox.csproj", "{71ABDEB7-D9EC-4760-A846-2716599A3CDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Biztalk.Sandbox", "samples\MessageBroker.POC.Biztalk.Sandbox\MessageBroker.POC.Biztalk.Sandbox.csproj", "{71ABDEB7-D9EC-4760-A846-2716599A3CDE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Biztalk.Sandbox.Reciver1", "samples\MessageBroker.POC.Biztalk.Sandbox.Reciver1\MessageBroker.POC.Biztalk.Sandbox.Reciver1.csproj", "{4735643C-5E5E-455F-B7FA-D1C2C6C9F853}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Sender", "MessageBroker.POC.Sender\MessageBroker.POC.Sender.csproj", "{BE24DA73-67E9-4073-AB2B-139A1884470A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Sender", "src\MessageBroker.POC.Sender\MessageBroker.POC.Sender.csproj", "{BE24DA73-67E9-4073-AB2B-139A1884470A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Reciver", "MessageBroker.POC.Reciver\MessageBroker.POC.Reciver.csproj", "{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Reciver", "src\MessageBroker.POC.Reciver\MessageBroker.POC.Reciver.csproj", "{4EFCC85D-5A5F-46DB-9F34-50A9DE9968DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Messages", "MessageBroker.POC.Messages\MessageBroker.POC.Messages.csproj", "{3DEF426E-287B-4E1E-B206-9D3E62B949FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker.POC.Messages", "src\MessageBroker.POC.Messages\MessageBroker.POC.Messages.csproj", "{3DEF426E-287B-4E1E-B206-9D3E62B949FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

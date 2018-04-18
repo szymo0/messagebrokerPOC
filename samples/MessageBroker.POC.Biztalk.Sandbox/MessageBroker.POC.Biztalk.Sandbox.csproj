@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBB241BB-BD1A-4F63-B3AC-1A26C940248F}</ProjectGuid>
+    <ProjectGuid>{71ABDEB7-D9EC-4760-A846-2716599A3CDE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MessageBroker.POC</RootNamespace>
-    <AssemblyName>MessageBroker.POC</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>MessageBroker.POC.Biztalk.Sandbox</RootNamespace>
+    <AssemblyName>MessageBroker.POC.Biztalk.Sandbox</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MessageBroker.POC.Sql.Que\MessageBroker.POC.Sql.Que.csproj">
+      <Project>{97a57ad1-8378-4aa3-bdd4-dcd16d3669a3}</Project>
+      <Name>MessageBroker.POC.Sql.Que</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

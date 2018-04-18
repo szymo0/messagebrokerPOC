@@ -90,7 +90,7 @@
     <Compile Include="RowParserFixture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\MessageBroker.POC.BiztalkTranslator\MessageBroker.POC.BiztalkTranslator.csproj">
+    <ProjectReference Include="..\..\src\MessageBroker.POC.BiztalkTranslator\MessageBroker.POC.BiztalkTranslator.csproj">
       <Project>{1af83dd1-8064-44a2-8cd0-077e90c5183c}</Project>
       <Name>MessageBroker.POC.BiztalkTranslator</Name>
     </ProjectReference>
