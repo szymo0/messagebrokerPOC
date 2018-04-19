@@ -56,6 +56,8 @@ namespace MessageBroker.POC.Sender.Sagas
             mapper.ConfigureMapping<TransportMessageCompleted>(c => c.CorrelationId);
         }
 
+
+
         protected override string CorrelationPropertyName => nameof(Data.CorrelationId);
     }
 

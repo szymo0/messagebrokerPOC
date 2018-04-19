@@ -63,7 +63,7 @@ namespace MessageBroker.POC.Sender.Handlers
                 sendOptions.SetHeader("MessageBroker.BussinesId", message.BussinesId);
                 sendOptions.SetHeader("MessageBroker.Dest", message.Destination);
                 sendOptions.SetHeader("MessageBroker.Src", message.Source);
-                //_instance.Send(transportMessage,sendOptions).GetAwaiter().GetResult();
+                _instance.Send(transportMessage, sendOptions);
                 _instance.SendLocal(new TransportMessageSend()
                 {
                     BussinesId = message.BussinesId,
