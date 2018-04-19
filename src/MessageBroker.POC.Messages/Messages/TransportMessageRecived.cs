@@ -8,4 +8,10 @@ namespace MessageBroker.POC.Messages.Messages
         public string BussinesId { get; set; }
         public Guid CorrelationId { get; set; }
     }
+
+    public class TransportMessageSend : IMessage
+    {
+        public string BussinesId { get; set; }
+        public Guid CorrelationId { get; set; }
+    }
 }

@@ -39,7 +39,7 @@ namespace MessageBroker.POC.BiztalkTranslator
 
                 BiztalkMessage biztalkMessage = new BiztalkMessage();
                 biztalkMessage.Data = messageData.ToString(SaveOptions.None);
-                biztalkMessage.CorrelationId = metaData.CorrelationId;
+                biztalkMessage.CorrelationId = Guid.NewGuid();
                 biztalkMessage.BussinesId = metaData.BussinesId;
                 biztalkMessage.Source = metaData.Source;
                 biztalkMessage.GenerateTime = DateTime.Now;

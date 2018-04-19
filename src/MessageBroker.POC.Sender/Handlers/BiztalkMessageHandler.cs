@@ -58,15 +58,26 @@ namespace MessageBroker.POC.Sender.Handlers
 
                 };
 
-            
-                _instance.SendLocal(transportMessage);
+                SendOptions sendOptions = new SendOptions();
+                sendOptions.SetDestination($"MessageBroker.RabbitMq.Transport.{message.Destination}");
+                sendOptions.SetHeader("MessageBroker.BussinesId", message.BussinesId);
+                sendOptions.SetHeader("MessageBroker.Dest", message.Destination);
+                sendOptions.SetHeader("MessageBroker.Src", message.Source);
+                //_instance.Send(transportMessage,sendOptions).GetAwaiter().GetResult();
+                _instance.SendLocal(new TransportMessageSend()
+                {
+                    BussinesId = message.BussinesId,
+                    CorrelationId = message.CorrelationId,
+
+                });
+                return Task.CompletedTask;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                throw;
             }
 
-            return Task.CompletedTask;
         }
     }
 

@@ -11,7 +11,7 @@ using NServiceBus.Persistence.Sql;
 namespace MessageBroker.POC.Sender.Sagas
 {
     public class MessageMonitoringSaga : NServiceBus.Persistence.Sql.SqlSaga<MessageMonitor>,
-        IAmStartedByMessages<TransportMessage>,
+        IAmStartedByMessages<TransportMessageSend>,
         IHandleMessages<TransportMessageRecived>,
         IHandleMessages<TransportMessageCompleted>
     {
@@ -20,19 +20,15 @@ namespace MessageBroker.POC.Sender.Sagas
         //{
           
         //}
-        public Task Handle(TransportMessage message, IMessageHandlerContext context)
+        public Task Handle(TransportMessageSend message, IMessageHandlerContext context)
         {
             _logger.Info("Handle transportMesage");
             Data.BussinesId = message.BussinesId;
             Data.CorrelationId = message.CorrelationId;
             Data.SendDate = DateTime.Now;
             Data.IsSend = true;
-            SendOptions sendOptions = new SendOptions();
-            sendOptions.SetDestination($"MessageBroker.RabbitMq.Transport.{message.Destination}");
-            sendOptions.SetHeader("MessageBroker.BussinesId", message.BussinesId);
-            sendOptions.SetHeader("MessageBroker.Dest", message.Destination);
-            sendOptions.SetHeader("MessageBroker.Src", message.Soruce);
-            return context.Send(message, sendOptions);
+
+            return Task.CompletedTask;
 
 
         }
@@ -55,7 +51,7 @@ namespace MessageBroker.POC.Sender.Sagas
 
         protected override void ConfigureMapping(IMessagePropertyMapper mapper)
         {
-            mapper.ConfigureMapping<TransportMessage>(c => c.CorrelationId);
+            mapper.ConfigureMapping<TransportMessageSend>(c => c.CorrelationId);
             mapper.ConfigureMapping<TransportMessageRecived>(c => c.CorrelationId);
             mapper.ConfigureMapping<TransportMessageCompleted>(c => c.CorrelationId);
         }
