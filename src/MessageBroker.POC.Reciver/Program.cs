@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
+using NServiceBus.MessageMutator;
 using NServiceBus.Persistence.Sql;
 
 namespace MessageBroker.POC.Reciver
@@ -29,7 +30,8 @@ namespace MessageBroker.POC.Reciver
                 sqlPersistance.SubscriptionSettings().CacheFor(TimeSpan.FromDays(1));
                 sqlPersistance.ConnectionBuilder(()=> new SqlConnection(ConfigurationManager.ConnectionStrings["SqlPersistence"].ConnectionString));
                 sqlPersistance.TablePrefix("0005NPIK");
-
+                configRabbitMq.RegisterMessageMutator(new IncomingHeadersMutator());
+                configRabbitMq.RegisterMessageMutator(new OutComingHeadersMutator());
                 configRabbitMq.AuditProcessedMessagesTo("audit");
                 configRabbitMq.SendFailedMessagesTo("erorrs");
                 configRabbitMq.EnableDurableMessages();
@@ -50,7 +52,8 @@ namespace MessageBroker.POC.Reciver
                 sqlPersistance.SubscriptionSettings().CacheFor(TimeSpan.FromDays(1));
                 sqlPersistance.ConnectionBuilder(() => new SqlConnection(ConfigurationManager.ConnectionStrings["SqlPersistence"].ConnectionString));
                 sqlPersistance.TablePrefix("0002NPIK");
-
+                configRabbitMq.RegisterMessageMutator(new IncomingHeadersMutator());
+                configRabbitMq.RegisterMessageMutator(new OutComingHeadersMutator());
                 configRabbitMq.AuditProcessedMessagesTo("audit");
                 configRabbitMq.SendFailedMessagesTo("erorrs");
                 configRabbitMq.EnableDurableMessages();
@@ -72,7 +75,8 @@ namespace MessageBroker.POC.Reciver
                 sqlPersistance.SubscriptionSettings().CacheFor(TimeSpan.FromDays(1));
                 sqlPersistance.ConnectionBuilder(() => new SqlConnection(ConfigurationManager.ConnectionStrings["SqlPersistence"].ConnectionString));
                 sqlPersistance.TablePrefix("0004NPIK");
-
+                configRabbitMq.RegisterMessageMutator(new IncomingHeadersMutator());
+                configRabbitMq.RegisterMessageMutator(new OutComingHeadersMutator());
                 configRabbitMq.AuditProcessedMessagesTo("audit");
                 configRabbitMq.SendFailedMessagesTo("erorrs");
                 configRabbitMq.EnableDurableMessages();

@@ -20,18 +20,18 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
         public RowParserFixture()
         {
             IMetadataParser metadataParser = Substitute.For<IMetadataParser>();
-            metadataParser.ParseToXmlElement(Arg.Any<Metadata>()).Returns(c =>
-            {
-                var root = new XElement("MetaData");
-                root.Add(new XElement("Dest", _destination));
-                root.Add(new XElement("DateFrom", DateTime.Now.ToString("s")));
-                root.Add(new XElement("DateTo", DateTime.Now.ToString("s")));
-                root.Add(new XElement("GenerateDate", _generateDate));
-                root.Add(new XElement("RowCount", 2));
-                root.Add(new XElement("Source", "0003NPIK"));
-                root.Add(new XElement("PackageId", _id));
-                return root;
-            });
+            //metadataParser.ParseToXmlElement(Arg.Any<Metadata>()).Returns(c =>
+            //{
+            //    var root = new XElement("MetaData");
+            //    root.Add(new XElement("Dest", _destination));
+            //    root.Add(new XElement("DateFrom", DateTime.Now.ToString("s")));
+            //    root.Add(new XElement("DateTo", DateTime.Now.ToString("s")));
+            //    root.Add(new XElement("GenerateDate", _generateDate));
+            //    root.Add(new XElement("RowCount", 2));
+            //    root.Add(new XElement("Source", "0003NPIK"));
+            //    root.Add(new XElement("PackageId", _id));
+            //    return root;
+            //});
             metadataParser.ParseToXmlElement(Arg.Any<DestinationMetadata>()).Returns(c =>
             {
                 var root = new XElement("MetaData");
@@ -48,7 +48,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
                 Metadata metadata = new Metadata();
                 metadata.Destinations = new[] { _destination };
                 metadata.CorrelationId = _id;
-                metadata.RowsCount = 1;
                 metadata.Source = "0003NPIK";
                 return metadata;
             });

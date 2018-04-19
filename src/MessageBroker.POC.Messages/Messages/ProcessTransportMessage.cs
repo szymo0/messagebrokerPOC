@@ -7,15 +7,13 @@ using NServiceBus;
 
 namespace MessageBroker.POC.Messages.Messages
 {
-    public class TransportMessage : IMessage
+    public class ProcessTransportMessage:IMessage
     {
         public string Data { get; set; }
-        public DateTime ForwardDate { get; set; }
         public Guid CorrelationId { get; set; }
         public string Destination { get; set; }
         public string InsertMethodName { get; set; }
         public string Soruce { get; set; }
         public string BussinesId { get; set; }
-
     }
 }

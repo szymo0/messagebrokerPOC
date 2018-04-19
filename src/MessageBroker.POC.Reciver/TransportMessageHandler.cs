@@ -8,12 +8,27 @@ using NServiceBus;
 
 namespace MessageBroker.POC.Reciver
 {
-    public class TransportMessageHandler:IHandleMessages<TransportMessage>
+    public class TransportMessageHandler : IHandleMessages<TransportMessage>
     {
         public Task Handle(TransportMessage message, IMessageHandlerContext context)
         {
             Console.WriteLine(message.Destination + " " + message.Data);
-            return Task.CompletedTask;
+            SendOptions sendOptions = new SendOptions();
+            sendOptions.SetDestination(context.ReplyToAddress);
+            var task = context.Send(new TransportMessageRecived
+            {
+                BussinesId = message.BussinesId
+            }, sendOptions);
+            task.Wait();
+            return context.SendLocal(new ProcessTransportMessage
+            {
+                BussinesId = message.BussinesId,
+                CorrelationId = message.CorrelationId,
+                Data = message.Data,
+                InsertMethodName = message.InsertMethodName,
+                Destination = message.Destination,
+                Soruce = message.Soruce
+            });
         }
     }
 }

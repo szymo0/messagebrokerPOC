@@ -51,17 +51,15 @@ namespace MessageBroker.POC.Sender.Handlers
                     CorrelationId = message.CorrelationId,
                     Data = message.Data,
                     Destination = message.Destination,
-                    RowId = message.RowId,
+                    InsertMethodName = message.InsertMethodName,
+                    BussinesId = message.BussinesId,
                     ForwardDate = DateTime.Now,
-                    ReletedMessageId = Guid.Parse(context.MessageHeaders["NServiceBus.MessageId"]),
-                    TranposrtName = message.TranposrtName
+                    Soruce = message.Source
 
                 };
 
-                SendOptions sendOptions = new SendOptions();
-                sendOptions.SetDestination($"MessageBroker.RabbitMq.Transport.{message.Destination}");
-
-                _instance.Send(transportMessage, sendOptions);
+            
+                _instance.SendLocal(transportMessage);
             }
             catch (Exception ex)
             {

@@ -47,7 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Messages\BiztalkMessage.cs" />
+    <Compile Include="Messages\ProcessTransportMessage.cs" />
     <Compile Include="Messages\TransportMessage.cs" />
+    <Compile Include="Messages\TransportMessageRecived.cs" />
+    <Compile Include="Messages\TransportMessageCompleted.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

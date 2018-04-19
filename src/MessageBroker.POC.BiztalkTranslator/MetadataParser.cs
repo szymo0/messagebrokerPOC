@@ -17,28 +17,41 @@ namespace MessageBroker.POC.BiztalkTranslator
             Metadata metaData = new Metadata();
             metaData.Destinations = GetDestionations(message.Element("Dest"));
             metaData.GenerateDate = ParseDate(message.Element("GenerateDate"));
-            metaData.RowsCount = ParseInt(message.Element("RowCount"));
+            metaData.AttachmentId = ParseString(message.Element("Attachment"));
+            metaData.BussinesId = ParseString(message.Element("BussinesId"));
+            metaData.ConfirmMethodName = ParseString(message.Element("ConfirmStoredProcedure"));
+            metaData.InsertMethodName = ParseString(message.Element("InsertStoredProcedure"));
             metaData.Source = message.Element("Source")?.Value ?? "0666NPIK";
-            metaData.CorrelationId = ParseCorellationId(message.Element("PackageId"));
+            metaData.CorrelationId = Guid.NewGuid();
 
             return metaData;
 
         }
 
-        public XElement ParseToXmlElement(Metadata metadata)
+        private string ParseString(XElement element)
         {
-            XElement element = new XElement("MetaData");
-            element.Add(new XElement("Dest", string.Join(";", metadata.Destinations)));
-            if(metadata.GenerateDate.HasValue)
-                element.Add(new XElement("GenerateDate", metadata.GenerateDate));
-            element.Add(new XElement("RowCount", metadata.RowsCount));
-            if(!string.IsNullOrEmpty(metadata.Source))
-                element.Add(new XElement("Source", metadata.Source));
-            if(!Guid.Empty.Equals(metadata.CorrelationId))
-                element.Add(new XElement("PackageId", metadata.CorrelationId));
+            if (element == null || element.IsEmpty)
+                return null;
 
-            return element;
+            return element.Value;
         }
+
+        //public XElement ParseToXmlElement(Metadata metadata)
+        //{
+        //    XElement element = new XElement("MetaData");
+        //    element.Add(new XElement("Dest", string.Join(";", metadata.Destinations)));
+        //    if(metadata.GenerateDate.HasValue)
+        //        element.Add(new XElement("GenerateDate", metadata.GenerateDate));
+        //    if(metadata.CorrelationId!=Guid.Empty)
+        //        element.Add(new XElement("CorrelationId"));
+        //    if(metadata.AttachmentId)
+        //    if(!string.IsNullOrEmpty(metadata.Source))
+        //        element.Add(new XElement("Source", metadata.Source));
+        //    if(!Guid.Empty.Equals(metadata.CorrelationId))
+        //        element.Add(new XElement("PackageId", metadata.CorrelationId));
+
+        //    return element;
+        //}
 
         public DestinationMetadata ParseFromXElementToDestinationMetadata(XElement message)
         {
@@ -50,8 +63,10 @@ namespace MessageBroker.POC.BiztalkTranslator
             DestinationMetadata metaData = new DestinationMetadata();
             metaData.Destination = message.Element("Dest").Value;
             metaData.GenerateDate = ParseDate(message.Element("GenerateDate"));
+            metaData.InsertMethodName = ParseString(message.Element("InsertMethodName"));
             metaData.Source = message.Element("Source")?.Value;
             metaData.CorrelationId = Guid.Parse(message.Element("PackageId").Value);
+            metaData.BussinesId = message.Element("BussinesId").Value;
 
             return metaData;
         }
@@ -62,8 +77,11 @@ namespace MessageBroker.POC.BiztalkTranslator
             element.Add(new XElement( "Dest", metadata.Destination));
             if(metadata.GenerateDate.HasValue)
                 element.Add(new XElement("GenerateDate", metadata.GenerateDate));
+            if(!string.IsNullOrEmpty(metadata.InsertMethodName))
+                element.Add(new XElement("InsertMethodName",metadata.InsertMethodName));
             element.Add(new XElement("Source", metadata.Source));
             element.Add(new XElement("PackageId", metadata.CorrelationId));
+            element.Add(new XElement("BussinesId", metadata.BussinesId));
 
             return element;
         }
@@ -138,7 +156,7 @@ namespace MessageBroker.POC.BiztalkTranslator
 
         Metadata ParseFromXElementToMetadata(XElement parsedMessage);
         DestinationMetadata ParseFromXElementToDestinationMetadata(XElement parsedMessage);
-        XElement ParseToXmlElement(Metadata metadata);
+        //XElement ParseToXmlElement(Metadata metadata);
         XElement ParseToXmlElement(DestinationMetadata metadata);
     }
 

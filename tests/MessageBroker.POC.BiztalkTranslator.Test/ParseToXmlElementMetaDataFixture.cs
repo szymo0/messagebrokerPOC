@@ -46,11 +46,7 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
             _metadata.Destinations = destinations;
             return this;
         }
-        public ParseToXmlElementMetaDataFixture SetRowsCount(int count)
-        {
-            _metadata.RowsCount = count;
-            return this;
-        }
+
         public ParseToXmlElementMetaDataFixture SetSource(string source)
         {
             _metadata.Source = source;
@@ -71,7 +67,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
             Clear()
                 .SetCorrelationId(_id)
                 .SetDestinations(_defaultDestinations)
-                .SetRowsCount(_rowCounts)
                 .SetGenerateDate(_generateDateTime)
                 .SetSource(_source);
         }
@@ -96,7 +91,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
             Clear()
                 .SetCorrelationId(_id)
                 .SetDestinations(_defaultDestinations)
-                .SetRowsCount(_rowCounts)
                 .SetGenerateDate(_generateDateTime)
                 .SetSource(_source);
         }
@@ -120,7 +114,6 @@ namespace MessageBroker.POC.BiztalkTranslator.Test
         {
             Clear()
                 .SetDestinations(_defaultDestinations)
-                .SetRowsCount(_rowCounts)
                 .SetGenerateDate(_generateDateTime)
                 .SetSource(_source);
         }

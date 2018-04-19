@@ -28,30 +28,26 @@ namespace MessageBroker.POC.BiztalkTranslator
 
             var metaDataXmlElement = message.Element("MetaData");
             var metaData = _metadataPareser.ParseFromXElementToMetadata(metaDataXmlElement);
-
-            foreach (var row in (metaDataXmlElement.NextNode as XElement).Elements("row"))
+            var dataToTransport = (metaDataXmlElement.NextNode as XElement);
+            var desitnationsMetaData = metaData.GenerateForDestinations();
+            foreach (var destMetadata in desitnationsMetaData)
             {
-                decimal? rowId = row.Attribute("id") != null 
-                              && !string.IsNullOrEmpty(row.Attribute("id").Value)?
-                    decimal.Parse(row.Attribute("id").Value) :new decimal?();
-                foreach (var destMetadata in metaData.GenerateForDestinations())
-                {
-                    XElement messageData = new XElement(message.Name.LocalName);
-                    messageData.Add(message.Attributes().ToArray());
-                    messageData.Add(_metadataPareser.ParseToXmlElement(destMetadata));
-                    messageData.Add(row);
+                XElement messageData = new XElement(message.Name.LocalName);
+                messageData.Add(message.Attributes().ToArray());
+                messageData.Add(_metadataPareser.ParseToXmlElement(destMetadata));
+                messageData.Add(dataToTransport);
 
-                    BiztalkMessage biztalkMessage = new BiztalkMessage();
-                    biztalkMessage.Data = messageData.ToString(SaveOptions.None);
-                    biztalkMessage.CorrelationId = metaData.CorrelationId;
-                    biztalkMessage.RowId = rowId;
-                    biztalkMessage.GenerateTime=DateTime.Now;
-                    biztalkMessage.Destination = destMetadata.Destination;
-                    biztalkMessage.TranposrtName = message.Name.LocalName;
-                    messages.Add(biztalkMessage);
-                }
-
+                BiztalkMessage biztalkMessage = new BiztalkMessage();
+                biztalkMessage.Data = messageData.ToString(SaveOptions.None);
+                biztalkMessage.CorrelationId = metaData.CorrelationId;
+                biztalkMessage.BussinesId = metaData.BussinesId;
+                biztalkMessage.Source = metaData.Source;
+                biztalkMessage.GenerateTime = DateTime.Now;
+                biztalkMessage.Destination = destMetadata.Destination;
+                biztalkMessage.TranposrtName = message.Name.LocalName;
+                messages.Add(biztalkMessage);
             }
+
 
             return messages;
         }

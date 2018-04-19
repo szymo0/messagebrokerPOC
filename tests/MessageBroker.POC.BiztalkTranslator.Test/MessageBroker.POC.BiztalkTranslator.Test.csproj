@@ -83,8 +83,6 @@
     <Compile Include="ParseFromXElementToMetadata.cs" />
     <Compile Include="ParseFromXElementToMetadataFixture.cs" />
     <Compile Include="ParseToXmlElementFixture.cs" />
-    <Compile Include="ParseToXmlElementMetaDataFixture.cs" />
-    <Compile Include="ParseToXmlElementMetaDataTest.cs" />
     <Compile Include="ParseToXmlElementTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RowParserFixture.cs" />
